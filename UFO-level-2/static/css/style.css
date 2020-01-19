@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: Special Elite, sans-serif;
+  font-family: Special Elite, monospace;
 }
 
 html,
@@ -153,6 +153,7 @@ select {
   #table-area tr td:first-child {
     font-size: 3em;
     font-weight: bold;
+    background-color: blue;
   }
 
   #table-area tr td:last-child {
@@ -165,6 +166,7 @@ select {
     height: 1px;
     margin-top: 20px;
     content: " ";
+    background-color: blueviolet;
   }
 
   #table-area td {
