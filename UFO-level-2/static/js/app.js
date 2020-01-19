@@ -2,47 +2,38 @@
 var tableData = data;
 
 // Set buttons using event listener
-search.addEventListener("click", searchButton);
-clear.addEventListener("click", resetButton);
+searchBtn.addEventListener("click", searchButton);
+clearBtn.addEventListener("click", resetButton);
 
 // Set variable using query selector
-var tbody = document.querySelectorAll("tbody");
-var date = document.querySelectorAll("#datetime");
-var state = document.querySelectorAll("#state");
-var city = document.querySelectorAll("#city");
-var country = document.querySelectorAll("#country");
-var shape = document.querySelectorAll("#shape");
-var search = document.querySelectorAll("#search");
-var clear = document.querySelectorAll("#reset");
-
-
-// Build search table for filtered data
-function searchButton() {
-    var filterDate = date.value;
-    var filterState = state.value.trim().toLowerCase();
-    var filterCity = city.value.trim().toLowerCase();
-    var filterCountry = country.value.trim().toLowerCase();
-    var filterShape = shape.value.trim().toLowerCase();
+var tbody = document.querySelector("tbody");
+var date = document.querySelector("#datetime");
+var state = document.querySelector("#state");
+var city = document.querySelector("#city");
+var country = document.querySelector("#country");
+var shape = document.querySelector("#shape");
+var search = document.querySelector("#search");
+var clear = document.querySelector("#reset");
 
 // Build table
 function populate() {
-  $tbody.innerHTML = "";
+  tbody.innerHTML = "";
   for (var i = 0; i < tableData.length; i++) {
     var index = tableData[i];
     console.log(index)
     var fields = Object.keys(index);
-    var $row = $tbody.insertRow(i);
+    var row = tbody.insertRow(i);
     for (var j = 0; j < fields.length; j++) {
       var field = fields[j];
-      var $cell = $row.insertCell(j);
-      $cell.innerText = index[field];
+      var cell = row.insertCell(j);
+      cell.innerText = index[field];
     }
   }
 }
 
   // Filter on date
   if (filterDate != "") {
-    tableData = data.filter(function (index) {
+    tableData = data.filter(function(index) {
       var indexDate = index.datetime;
       return indexDate === filterDate;
     });
@@ -51,7 +42,7 @@ function populate() {
 
   // Filter on state
   if (filterState != "") {
-    tableData = tableData.filter(function (index) {
+    tableData = tableData.filter(function(index) {
       var indexState = index.state;
       return indexState === filterState;
     });
@@ -60,12 +51,12 @@ function populate() {
 
   // Filter on city
   if (filterCity != "") {
-    tableData = tableData.filter(function (index) {
+    tableData = tableData.filter(function(index) {
       var indexCity = index.city;
       return indexCity === filterCity;
     });
   }
-  else { tableData };
+  else {tableData};
 
   // Filter on country
   if (filterCountry != "") {
@@ -78,7 +69,7 @@ function populate() {
 
   // Filter on shape
   if (filterShape != "") {
-    tableData = tableData.filter(function (index) {
+    tableData = tableData.filter(function(index) {
       var indexShape = index.shape;
       return indexShape === filterShape;
     });
@@ -86,11 +77,20 @@ function populate() {
   else {tableData};
 
   populate();
-}
 
+
+// Build search table for filtered data
+function searchButton() {
+  var filterDate = date.value;
+  var filterState = state.value.trim().toLowerCase();
+  var filterCity = city.value.trim().toLowerCase();
+  var filterCountry = country.value.trim().toLowerCase();
+  var filterShape = shape.value.trim().toLowerCase();
 // Clear all the fields
 function resetButton(){
-    populate();
+  populate();
 }
 
+// Populate the data table when page loads for first time
 populate();
+}
